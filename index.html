@@ -13,41 +13,64 @@
 
     <main class="container">
 
+        <!-- 全体の流れ -->
         <section class="section">
             <h2>0. 全体の流れ</h2>
             <ol>
-                <li>GitHubにリポジトリを作成する</li>
+                <li>GitHubにリポジトリ（フォルダ）を作成する</li>
                 <li>Streamlitアプリのファイル（<code>app.py</code> と <code>requirements.txt</code>）を作成してGitHubに保存する</li>
-                <li>Streamlit Community Cloud でアプリをデプロイする</li>
-                <li>（任意）このページのような説明用サイトを GitHub Pages で公開する</li>
+                <li>Streamlit Community Cloud でアプリをデプロイ（公開）する</li>
+                <li>（任意）この説明ページを GitHub Pages で公開する</li>
             </ol>
         </section>
 
+        <!-- 事前準備 -->
         <section class="section">
             <h2>1. 事前準備</h2>
             <ul>
                 <li>GitHubアカウントの作成（<a href="https://github.com/" target="_blank">https://github.com/</a>）</li>
-                <li>Streamlitアカウントの作成（
-                    <a href="https://streamlit.io/" target="_blank">https://streamlit.io/</a> → GitHubでログイン）</li>
-                <li><strong>GitHub や Streamlit のアカウント登録には、個人のメールアドレスを使うこと。</strong><br>
-                    学校のメールアドレス（@○○.ed.jp など）は使用しない。</li>
+                <li>Streamlitアカウントの作成（<a href="https://streamlit.io/" target="_blank">https://streamlit.io/</a> → GitHubでログイン）</li>
+                <li><strong>アカウント登録には、個人のメールアドレス（Gmail など）を使用すること。</strong><br>
+                    学校のメールアドレス（@◯◯.ed.jp など）は、外部サービスとの連携に制限があり、
+                    GitHub・Streamlitでログインできないことがあるため使用できない。</li>
             </ul>
         </section>
 
+        <!-- リポジトリとは -->
         <section class="section">
-            <h2>2. GitHubでリポジトリを作る</h2>
+            <h2>2. GitHubでリポジトリを作る（リポジトリとは？）</h2>
+
+            <h3>● リポジトリとは？</h3>
+            <p>
+                GitHubでいう「リポジトリ」は、プロジェクトをまとめて保存するフォルダのようなものです。<br>
+                Streamlitアプリを公開するためには、アプリを構成するファイル一式を
+                GitHub上のリポジトリにまとめて保存します。
+            </p>
+
+            <h3>● リポジトリ作成手順</h3>
             <ol>
                 <li>GitHubにログインし、右上の「＋」→ <strong>New repository</strong> をクリック</li>
                 <li>Repository name に例：<code>my-streamlit-app</code> を入力</li>
-                <li><strong>Public</strong> を選んで、必要なら「Add a README file」にチェック</li>
+                <li><strong>Public</strong> を選択（公開アプリの場合）</li>
+                <li>必要なら「Add a README file」にチェック</li>
                 <li><strong>Create repository</strong> をクリック</li>
             </ol>
         </section>
 
+        <!-- ファイル形式の説明 -->
         <section class="section">
             <h2>3. Streamlitアプリのファイルを作る</h2>
 
-            <h3>3-1. <code>app.py</code> の例</h3>
+            <h3>● ファイル形式について</h3>
+            <ul>
+                <li><code>.py</code> …… Pythonプログラムのファイル  
+                    <br>Streamlitアプリ本体（プログラム）はこの形式で作成します。</li>
+
+                <li><code>.txt</code> …… テキストファイル  
+                    <br><code>requirements.txt</code> のように、アプリで使うライブラリ一覧を記述するために使用します。</li>
+            </ul>
+
+            <h3>● 3-1. <code>app.py</code>（アプリ本体）の例</h3>
             <pre><code>import streamlit as st
 
 st.title("勇者のステータス表示アプリ")
@@ -62,61 +85,60 @@ if st.button("ステータスを表示"):
     st.write("レベル：", level)
     st.write("HP：", hp)</code></pre>
 
-            <h3>3-2. <code>requirements.txt</code> の例</h3>
+            <h3>● 3-2. <code>requirements.txt</code> の例</h3>
             <pre><code>streamlit</code></pre>
 
-            <p>他に <code>pandas</code> や <code>numpy</code> などを使う場合は、1行ずつ追加して書きます。</p>
+            <p>他のライブラリ（例：<code>pandas</code>, <code>numpy</code>）を使う場合は1行ずつ追加します。</p>
         </section>
 
+        <!-- GitHubでファイルを作る -->
         <section class="section">
             <h2>4. GitHub上でファイルを作成する（Create new file）</h2>
 
-            <h3>4-1. <code>app.py</code> を作る</h3>
+            <h3>● 4-1. <code>app.py</code> を作成</h3>
             <ol>
                 <li>リポジトリのページを開く</li>
-                <li>ファイル一覧の右上あたりの <strong>Add file</strong> → <strong>Create new file</strong> をクリック</li>
-                <li>上の「File name」欄に <code>app.py</code> と入力</li>
-                <li>大きなテキストエリアに、先ほどの <code>app.py</code> のコードをコピー＆ペースト</li>
-                <li>画面下部の「Commit new file」でメッセージを確認し、<strong>Commit new file</strong> をクリック</li>
+                <li>右上の <strong>Add file</strong> → <strong>Create new file</strong> をクリック</li>
+                <li>「File name」に <code>app.py</code> と入力</li>
+                <li>下の大きな入力欄に、先ほどの <code>app.py</code> のコードを貼り付ける</li>
+                <li>下へスクロールし、「Commit new file」をクリックして保存</li>
             </ol>
 
-            <h3>4-2. <code>requirements.txt</code> を作る</h3>
+            <h3>● 4-2. <code>requirements.txt</code> を作成</h3>
             <ol>
-                <li>再び <strong>Add file</strong> → <strong>Create new file</strong> をクリック</li>
+                <li>再度 <strong>Add file</strong> → <strong>Create new file</strong> をクリック</li>
                 <li>「File name」に <code>requirements.txt</code> と入力</li>
-                <li>テキストエリアに、次の1行を入力</li>
+                <li>内容欄に次の1行を入力</li>
             </ol>
 
             <pre><code>streamlit</code></pre>
 
             <ol start="4">
-                <li>画面下の <strong>Commit new file</strong> をクリックして保存</li>
+                <li>「Commit new file」をクリックして保存</li>
             </ol>
-
-            <p>これで、リポジトリの中に <code>app.py</code> と <code>requirements.txt</code> が作成されます。</p>
         </section>
 
+        <!-- Streamlitで公開 -->
         <section class="section">
             <h2>5. Streamlit Community Cloudで公開する</h2>
             <ol>
                 <li><a href="https://share.streamlit.io/" target="_blank">Streamlit Community Cloud</a> にアクセスし、GitHubでログイン</li>
                 <li><strong>New app</strong> ボタンをクリック</li>
-                <li>Repository に先ほど作成したリポジトリ（例：<code>ユーザー名/my-streamlit-app</code>）を選択</li>
-                <li>Branch は通常 <code>main</code>、Main file path は <code>app.py</code> を指定</li>
-                <li><strong>Deploy</strong> を押すとビルドが始まり、完了すると <code>https://〜.streamlit.app</code> のURLが発行される</li>
+                <li>Repository に先ほどのリポジトリ（例：<code>ユーザー名/my-streamlit-app</code>）を指定</li>
+                <li>Branch は <code>main</code>、Main file path は <code>app.py</code> を選択</li>
+                <li><strong>Deploy</strong> を押すとビルドが始まり、公開用URL（<code>https://～.streamlit.app</code>）が発行される</li>
             </ol>
-            <p>このURLを生徒に配布すると、ブラウザからアプリを使えるようになります。</p>
         </section>
 
+        <!-- GitHub Pages -->
         <section class="section">
             <h2>6. この説明ページをGitHub Pagesで公開する</h2>
             <ol>
-                <li>この <code>index.html</code> と <code>style.css</code> をリポジトリに置く（同じように「Create new file」で作成してもよい）</li>
-                <li>GitHubのリポジトリで <strong>Settings</strong> → <strong>Pages</strong> を開く</li>
-                <li>Source で Branch を <code>main</code>、フォルダを <code>/root</code> などに設定し、保存</li>
-                <li>しばらくすると、GitHub Pages のURL（例：<code>https://ユーザー名.github.io/リポジトリ名/</code>）が発行される</li>
+                <li><code>index.html</code> と <code>style.css</code> をリポジトリに追加</li>
+                <li>GitHubの <strong>Settings</strong> → <strong>Pages</strong> を開く</li>
+                <li>Source を <code>main</code>、フォルダを <code>/root</code> に設定して保存</li>
+                <li>表示されたURL（例：<code>https://ユーザー名.github.io/リポジトリ名/</code>）にアクセス</li>
             </ol>
-            <p>このページ自体が、GitHub Pages で公開された「アプリの公開手順ガイド」になります。</p>
         </section>
 
         <footer class="footer">
