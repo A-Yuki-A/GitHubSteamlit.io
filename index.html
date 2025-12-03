@@ -50,3 +50,120 @@
                 1つのアプリや1つの作品ごとに、1つのリポジトリを作って、その中にファイルをまとめて保存します。<br>
                 このページで作る <code>app.py</code> や <code>requirements.txt</code> も、すべて同じリポジトリの中に置きます。
             </p>
+
+            <h3>2-2. リポジトリ作成手順</h3>
+            <ol>
+                <li>GitHubにログインし、右上の「＋」→ <strong>New repository</strong> をクリック</li>
+                <li>Repository name に例：<code>my-streamlit-app</code> を入力する</li>
+                <li><strong>Public</strong> を選択する（公開したい場合）</li>
+                <li>必要なら「Add a README file」にチェックを入れる</li>
+                <li><strong>Create repository</strong> をクリックする</li>
+            </ol>
+        </section>
+
+        <!-- 3. 拡張子 .py / .txt の説明とアプリファイル -->
+        <section class="section">
+            <h2>3. アプリ用ファイルと拡張子の説明</h2>
+
+            <h3>3-1. 拡張子とは？</h3>
+            <p>
+                ファイル名の最後についている <code>.py</code> や <code>.txt</code> の部分を
+                <strong>拡張子（かくちょうし）</strong> と呼びます。<br>
+                拡張子によって、「このファイルは何の種類か（プログラムなのか、文章なのか）」を区別します。
+            </p>
+
+            <ul>
+                <li>
+                    <strong><code>.py</code>（ピー・ワイ）</strong><br>
+                    Pythonというプログラミング言語で書かれたプログラムファイルです。<br>
+                    Streamlitアプリの本体は <code>app.py</code> という名前の <code>.py</code> ファイルとして作ります。
+                </li>
+                <li>
+                    <strong><code>.txt</code>（テキスト）</strong><br>
+                    普通の文字だけが書かれたテキストファイルです。<br>
+                    Streamlitでは、アプリで使うライブラリの一覧を
+                    <code>requirements.txt</code> という <code>.txt</code> ファイルに書いておきます。
+                </li>
+            </ul>
+
+            <h3>3-2. <code>app.py</code> のサンプルコード</h3>
+            <pre><code>import streamlit as st
+
+st.title("勇者のステータス表示アプリ")
+
+namae = st.text_input("勇者の名前を入力してください")
+level = st.slider("レベル", 1, 99, 10)
+hp = st.number_input("HP", min_value=1, max_value=999, value=100)
+
+if st.button("ステータスを表示"):
+    st.write("=== 勇者のステータス ===")
+    st.write("名前：", namae)
+    st.write("レベル：", level)
+    st.write("HP：", hp)</code></pre>
+
+            <h3>3-3. <code>requirements.txt</code> の内容</h3>
+            <pre><code>streamlit</code></pre>
+            <p>今回は <code>streamlit</code> だけを使うので、1行だけでOKです。</p>
+        </section>
+
+        <!-- 4. GitHub上でファイルを作る -->
+        <section class="section">
+            <h2>4. GitHub上でファイルを作成する（Create new file）</h2>
+
+            <h3>4-1. <code>app.py</code> を作成</h3>
+            <ol>
+                <li>作成したリポジトリのページを開く</li>
+                <li>ファイル一覧の右上にある <strong>Add file</strong> → <strong>Create new file</strong> をクリック</li>
+                <li>「File name」に <code>app.py</code> と入力する</li>
+                <li>下の大きなテキストエリアに、先ほどの <code>app.py</code> のコードを貼り付ける</li>
+                <li>下にスクロールして「Commit new file」をクリックし、保存する</li>
+            </ol>
+
+            <h3>4-2. <code>requirements.txt</code> を作成</h3>
+            <ol>
+                <li>もう一度 <strong>Add file</strong> → <strong>Create new file</strong> をクリック</li>
+                <li>「File name」に <code>requirements.txt</code> と入力する</li>
+                <li>テキストエリアに次の1行を書き込む</li>
+            </ol>
+
+            <pre><code>streamlit</code></pre>
+
+            <ol start="4">
+                <li>再び「Commit new file」をクリックして保存する</li>
+            </ol>
+
+            <p>これで、リポジトリの中に <code>app.py</code> と <code>requirements.txt</code> がそろった状態になります。</p>
+        </section>
+
+        <!-- 5. Streamlit Community Cloud で公開 -->
+        <section class="section">
+            <h2>5. Streamlit Community Cloudで公開する</h2>
+            <ol>
+                <li><a href="https://share.streamlit.io/" target="_blank">Streamlit Community Cloud</a> にアクセスし、GitHubアカウントでログインする</li>
+                <li><strong>New app</strong> ボタンをクリックする</li>
+                <li>Repository に、先ほど作ったリポジトリ（例：<code>ユーザー名/my-streamlit-app</code>）を選ぶ</li>
+                <li>Branch は通常 <code>main</code>、Main file path は <code>app.py</code> を指定する</li>
+                <li><strong>Deploy</strong> を押すとビルドが始まり、完了すると <code>https://〜.streamlit.app</code> のようなURLが発行される</li>
+            </ol>
+            <p>このURLを共有すれば、他の人もブラウザからアプリを使うことができます。</p>
+        </section>
+
+        <!-- 6. GitHub Pages でこの説明ページを公開 -->
+        <section class="section">
+            <h2>6. この説明ページをGitHub Pagesで公開する</h2>
+            <ol>
+                <li>同じリポジトリの中に、この <code>index.html</code> と <code>style.css</code> を作成する</li>
+                <li>リポジトリの <strong>Settings</strong> → <strong>Pages</strong> を開く</li>
+                <li>Source の Branch を <code>main</code>、フォルダを <code>/root</code> に設定して保存する</li>
+                <li>数十秒〜数分後、GitHub Pages のURL（例：<code>https://ユーザー名.github.io/リポジトリ名/</code>）が表示される</li>
+            </ol>
+            <p>そのURLにアクセスすると、この説明ページがWebサイトとして表示されます。</p>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Streamlit アプリ公開手順ガイド</p>
+        </footer>
+
+    </main>
+</body>
+</html>
