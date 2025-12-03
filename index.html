@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Streamlitアプリ 公開手順ガイド</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Streamlitアプリ 公開手順ガイド</h1>
+        <p>GitHub と Streamlit Community Cloud を使って、PythonアプリをWeb公開する手順をまとめました。</p>
+    </header>
+
+    <main class="container">
+
+        <section class="section">
+            <h2>0. 全体の流れ</h2>
+            <ol>
+                <li>GitHubにリポジトリを作成する</li>
+                <li>Streamlitアプリのファイル（<code>app.py</code> と <code>requirements.txt</code>）を作成してGitHubにアップする</li>
+                <li>Streamlit Community Cloud でアプリをデプロイする</li>
+                <li>（任意）このページのような説明用サイトを GitHub Pages で公開する</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>1. 事前準備</h2>
+            <ul>
+                <li>GitHubアカウントの作成（<a href="https://github.com/" target="_blank">https://github.com/</a>）</li>
+                <li>Streamlitアカウントの作成
+                    （<a href="https://streamlit.io/" target="_blank">https://streamlit.io/</a> → GitHubでログイン）</li>
+                <li>PCにPythonをインストール（ローカルでテストしたい場合）</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>2. GitHubでリポジトリを作る</h2>
+            <ol>
+                <li>GitHubにログインし、右上の「＋」→ <strong>New repository</strong> をクリック</li>
+                <li>Repository name に例：<code>my-streamlit-app</code> を入力</li>
+                <li><strong>Public</strong> を選んで、必要なら「Add a README file」にチェック</li>
+                <li><strong>Create repository</strong> をクリック</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>3. Streamlitアプリのファイルを作る</h2>
+
+            <h3>3-1. <code>app.py</code> の例</h3>
+            <pre><code>import streamlit as st
+
+st.title("勇者のステータス表示アプリ")
+
+namae = st.text_input("勇者の名前を入力してください")
+level = st.slider("レベル", 1, 99, 10)
+hp = st.number_input("HP", min_value=1, max_value=999, value=100)
+
+if st.button("ステータスを表示"):
+    st.write("=== 勇者のステータス ===")
+    st.write("名前：", namae)
+    st.write("レベル：", level)
+    st.write("HP：", hp)</code></pre>
+
+            <h3>3-2. <code>requirements.txt</code> の例</h3>
+            <pre><code>streamlit</code></pre>
+
+            <p>他に <code>pandas</code> や <code>numpy</code> などを使う場合は、1行ずつ追加して書きます。</p>
+        </section>
+
+        <section class="section">
+            <h2>4. ファイルをGitHubにアップロードする</h2>
+            <h3>ブラウザからアップロードする場合</h3>
+            <ol>
+                <li>リポジトリのページを開く</li>
+                <li><strong>Add file</strong> → <strong>Upload files</strong> をクリック</li>
+                <li><code>app.py</code> と <code>requirements.txt</code> をドラッグ＆ドロップ</li>
+                <li>下のメッセージ欄に簡単な説明を書いて、<strong>Commit changes</strong> をクリック</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>5. Streamlit Community Cloudで公開する</h2>
+            <ol>
+                <li><a href="https://share.streamlit.io/" target="_blank">Streamlit Community Cloud</a> にアクセスし、GitHubでログイン</li>
+                <li><strong>New app</strong> ボタンをクリック</li>
+                <li>Repository に先ほど作成したリポジトリ（例：<code>ユーザー名/my-streamlit-app</code>）を選択</li>
+                <li>Branch は通常 <code>main</code>、Main file path は <code>app.py</code> を指定</li>
+                <li><strong>Deploy</strong> を押すとビルドが始まり、完了すると <code>https://〜.streamlit.app</code> のURLが発行される</li>
+            </ol>
+            <p>このURLを生徒に配布すると、ブラウザからアプリを使えるようになります。</p>
+        </section>
+
+        <section class="section">
+            <h2>6. この説明ページをGitHub Pagesで公開する</h2>
+            <ol>
+                <li>この <code>index.html</code> と <code>style.css</code> をリポジトリに置く</li>
+                <li>GitHubのリポジトリで <strong>Settings</strong> → <strong>Pages</strong> を開く</li>
+                <li>Source で Branch を <code>main</code>、フォルダを <code>/root</code> などに設定し、保存</li>
+                <li>しばらくすると、GitHub Pages のURL（例：<code>https://ユーザー名.github.io/リポジトリ名/</code>）が発行される</li>
+            </ol>
+            <p>このページ自体が、GitHub Pages で公開された「アプリの公開手順ガイド」になります。</p>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Streamlit アプリ公開手順ガイド</p>
+        </footer>
+
+    </main>
+</body>
+</html>
