@@ -8,7 +8,7 @@
 <body>
     <header class="header">
         <h1>アプリ 公開手順ガイド</h1>
-        <p>GitHub を使って開発し、必要に応じてURLで共有する手順をまとめたページです。</p>
+        <p>GitHub と Streamlit Community Cloud を使って、Python（Streamlit）アプリをWeb公開する手順をまとめたページです。</p>
     </header>
 
     <main class="container">
@@ -18,9 +18,9 @@
             <h2>0. 全体の流れ</h2>
             <ol>
                 <li>GitHubにリポジトリ（プロジェクト用フォルダ）を作成する</li>
-                <li>GitHub上でアプリ用ファイルを作成する</li>
+                <li>GitHub上でアプリ用ファイル（<code>app.py</code>, <code>requirements.txt</code>）を作成する</li>
                 <li>生成AIを使ってコードを作成・改善する</li>
-                <li>GitHubでURLを公開する（GitHub Pages）</li>
+                <li>Streamlit Community Cloud でアプリをデプロイ（公開）する</li>
             </ol>
         </section>
 
@@ -29,8 +29,9 @@
             <h2>1. 事前準備</h2>
             <ul>
                 <li>GitHubアカウントを作成する（<a href="https://github.com/" target="_blank">https://github.com/</a>）</li>
+                <li>Streamlitアカウントを作成する（<a href="https://streamlit.io/" target="_blank">https://streamlit.io/</a> → GitHubでログイン）</li>
                 <li>
-                    <strong>GitHub のアカウント登録には、個人のメールアドレスを使用してください。</strong><br>
+                    <strong>GitHub や Streamlit のアカウント登録には、個人のメールアドレスを使用してください。</strong><br>
                     例：Gmail、Yahooメールなど。<br>
                     <strong>学校のメールアドレスや学校アカウントは使用しないでください。</strong>
                 </li>
@@ -51,8 +52,8 @@
             <ol>
                 <li>GitHubにログインし、右上の「＋」→ <strong>New repository</strong> をクリックする</li>
                 <li><strong>Repository name</strong> にアプリ名、例：<code>dorakue-gatya</code> を入力する</li>
-                <li><strong>Description</strong> アプリの説明を入力　例：ドラクエ風ガチャコード</li>
-                <li><strong>Public</strong> を選択する。（GitHubは公開が基本）</li>
+                <li><strong>Description</strong> にアプリの説明を入力する　例：ドラクエ風ガチャアプリ</li>
+                <li><strong>Public</strong> を選択する（公開して困る情報は置かない）</li>
                 <li><strong>Add a README file</strong> にチェックを入れる</li>
                 <li><strong>Create repository</strong> をクリックする</li>
             </ol>
@@ -75,7 +76,7 @@
             <h3>3-2. <code>requirements.txt</code> を作成</h3>
             <ol>
                 <li><strong>Add file</strong> → <strong>Create new file</strong> を選択する</li>
-                <li>Name your File に <code>requirements.txt</code> と入力する</li>
+                <li>Name your file に <code>requirements.txt</code> と入力する</li>
                 <li>Enter file contents here のテキストエリアに 次の1行を入力する：</li>
             </ol>
 
@@ -86,7 +87,7 @@
             </ol>
         </section>
 
-        <!-- ★追加：生成AIでコード作成（3と4の間） -->
+        <!-- 4. 生成AIでコード作成 -->
         <section class="section">
             <h2>4. 生成AIを使ってコードを作成する</h2>
 
@@ -115,7 +116,7 @@
 
             <pre><code>〇〇のアプリをPythonで作りたいです。
 条件：
-- GitHub を使う
+- Streamlit を使う
 - ファイル名は app.py
 - 入力：＿＿＿＿
 - 出力：＿＿＿＿
@@ -125,7 +126,7 @@
             <p>例：ガチャアプリの場合</p>
             <pre><code>ドラクエ風ガチャのアプリをPythonで作りたいです。
 条件：
-- GitHub を使う
+- Streamlit を使う
 - ファイル名は app.py
 - ボタンを押すと「S/A/B/C」のどれかを確率で表示する（例：S 5%, A 15%, B 30%, C 50%）
 - 履歴も画面に残るようにする
@@ -141,7 +142,7 @@
             </p>
         </section>
 
-        <!-- 4. アプリ用ファイルと拡張子（番号を繰り下げ） -->
+        <!-- 5. アプリ用ファイルと拡張子 -->
         <section class="section">
             <h2>5. アプリ用ファイルと拡張子の説明</h2>
 
@@ -155,7 +156,7 @@
                 <li>
                     <strong>.py（Pythonファイル）</strong><br>
                     Pythonのプログラムを書くファイルです。  
-                    アプリ本体は <code>app.py</code> に書きます。
+                    Streamlitアプリ本体は <code>app.py</code> に書きます。
                 </li>
                 <li>
                     <strong>.txt（テキストファイル）</strong><br>
@@ -165,41 +166,16 @@
             </ul>
         </section>
 
-                <section class="section">
-            <h2>6. GitHubでURLを公開する（GitHub Pages）</h2>
-
-            <p>
-                GitHub Pages を使うと、Python、HTML/CSS/画像などのページをURLで公開できます。<br>
-            </p>
-
-            <h3>6-1. 公開に必要なファイル</h3>
-            <ul>
-                <li><code>index.html</code>（ページ本体）</li>
-                <li><code>style.css</code>（デザイン）</li>
-                <li>画像フォルダ（例：<code>image/</code>）</li>
-            </ul>
-
-            <h3>6-2. GitHub Pages の設定手順</h3>
+        <!-- 6. Streamlit Community Cloud -->
+        <section class="section">
+            <h2>6. Streamlit Community Cloudで公開する</h2>
             <ol>
-                <li>リポジトリの画面で <strong>Settings</strong> を開く</li>
-                <li>左メニューの <strong>Pages</strong> を開く</li>
-                <li>
-                    <strong>Build and deployment</strong> の <strong>Source</strong> を
-                    <strong>Deploy from a branch</strong> にする
-                </li>
-                <li>
-                    <strong>Branch</strong> を <code>main</code>（または <code>master</code>）、
-                    フォルダは <code>/(root)</code> を選んで <strong>Save</strong>
-                </li>
-                <li>しばらく待つと、Pages の画面に公開URLが表示される</li>
+                <li><a href="https://share.streamlit.io/" target="_blank">Streamlit Community Cloud</a> にアクセスし、GitHubでログインする</li>
+                <li><strong>New app</strong> をクリックする</li>
+                <li>Repository に <code>ユーザー名/リポジトリ名</code> を選択する</li>
+                <li>Branch は <code>main</code>、Main file path は <code>app.py</code> を指定する</li>
+                <li><strong>Deploy</strong> を押すと公開URL（<code>https://～.streamlit.app</code>）が発行される</li>
             </ol>
-
-            <h3>6-3. 公開URLの例</h3>
-            <pre><code>https://ユーザー名.github.io/リポジトリ名/</code></pre>
-
-            <p>
-                画像が表示されない場合は、フォルダ名・ファイル名（大文字小文字）・パスが合っているかを確認してください。
-            </p>
         </section>
 
         <footer class="footer">
