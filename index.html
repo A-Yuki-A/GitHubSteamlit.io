@@ -18,7 +18,7 @@
             <h2>0. 全体の流れ</h2>
             <ol>
                 <li>GitHubにリポジトリ（プロジェクト用フォルダ）を作成する</li>
-                <li>リポジトリの中に <code>app.py</code> と <code>requirements.txt</code> を作成する</li>
+                <li>GitHub上でアプリ用ファイルを作成する</li>
                 <li>Streamlit Community Cloud でアプリをデプロイ（公開）する</li>
             </ol>
         </section>
@@ -32,9 +32,7 @@
                 <li>
                     <strong>GitHub や Streamlit のアカウント登録には、個人のメールアドレスを使用してください。</strong><br>
                     例：Gmail、Yahooメールなど。<br>
-                    <strong>学校のメールアドレスや学校アカウント（例：〇〇高校ドメイン、oughアカウント）は使わないでください。</strong><br>
-                    学校アカウントは外部サービスとの連携に制限があり、
-                    GitHub・Streamlit にログインできない場合があります。
+                    <strong>学校のメールアドレスや学校アカウントは使用しないでください。</strong>
                 </li>
             </ul>
         </section>
@@ -46,30 +44,51 @@
             <h3>2-1. リポジトリとは？</h3>
             <p>
                 <strong>リポジトリ（repository）</strong>とは、GitHub上に作る<strong>「プロジェクト用フォルダ」</strong>です。<br>
-                アプリや作品ごとにリポジトリを分けることで、ファイルを整理して保存できます。
+                アプリや作品ごとにリポジトリを分けて管理します。
             </p>
 
             <h3>2-2. リポジトリ作成手順</h3>
             <ol>
                 <li>GitHubにログインし、右上の「＋」→ <strong>New repository</strong> をクリックする</li>
-                <li><strong>Repository name</strong> に、例：<code>my-streamlit-app</code> を入力する<br>
-                    ※英数字と「-（ハイフン）」を使うのがおすすめです
-                </li>
-                <li><strong>Public</strong> を選択する<br>
-                    ※Publicは「誰でも見られる設定」です。公開して困る内容は置かないようにしましょう
-                </li>
-                <li><strong>Add a README file</strong> にチェックを入れる<br>
-                    ※READMEは、このリポジトリの説明を書くメモです（あとから編集できます）
-                </li>
-                <li><strong>Create repository</strong> をクリックして作成する</li>
+                <li><strong>Repository name</strong> に、例：<code>my-streamlit-app</code> を入力する</li>
+                <li><strong>Public</strong> を選択する</li>
+                <li><strong>Add a README file</strong> にチェックを入れる</li>
+                <li><strong>Create repository</strong> をクリックする</li>
             </ol>
         </section>
 
-        <!-- 3. 拡張子とアプリファイル -->
+        <!-- 3. GitHubでファイル作成 -->
         <section class="section">
-            <h2>3. アプリ用ファイルと拡張子の説明</h2>
+            <h2>3. GitHub上でファイルを作成する（Create new file）</h2>
 
-            <h3>3-1. 拡張子とは？</h3>
+            <h3>3-1. <code>app.py</code> を作成</h3>
+            <ol>
+                <li>作成したリポジトリのページを開く</li>
+                <li><strong>Add file</strong> → <strong>Create new file</strong> を選択する</li>
+                <li>File name に <code>app.py</code> と入力する</li>
+                <li>下のテキストエリアにコードを貼り付ける</li>
+                <li><strong>Commit new file</strong> を押して保存する</li>
+            </ol>
+
+            <h3>3-2. <code>requirements.txt</code> を作成</h3>
+            <ol>
+                <li><strong>Add file</strong> → <strong>Create new file</strong> を選択する</li>
+                <li>File name に <code>requirements.txt</code> と入力する</li>
+                <li>次の1行を入力する：</li>
+            </ol>
+
+            <pre><code>streamlit</code></pre>
+
+            <ol start="4">
+                <li><strong>Commit new file</strong> を押して保存する</li>
+            </ol>
+        </section>
+
+        <!-- 4. アプリ用ファイルと拡張子 -->
+        <section class="section">
+            <h2>4. アプリ用ファイルと拡張子の説明</h2>
+
+            <h3>4-1. 拡張子とは？</h3>
             <p>
                 ファイル名の最後の <code>.py</code> や <code>.txt</code> を<strong>拡張子</strong>と呼びます。  
                 拡張子は「そのファイルが何の種類か」を表します。
@@ -84,91 +103,9 @@
                 <li>
                     <strong>.txt（テキストファイル）</strong><br>
                     文字だけを保存するファイルです。  
-                    Streamlitで使うライブラリの一覧を <code>requirements.txt</code> に書きます。
+                    使用するライブラリの一覧を <code>requirements.txt</code> に書きます。
                 </li>
             </ul>
-
-            <h3>3-2. <code>app.py</code> のサンプルコード</h3>
-            <pre><code>import streamlit as st
-
-st.title("勇者のステータス表示アプリ")
-
-namae = st.text_input("勇者の名前を入力してください")
-level = st.slider("レベル", 1, 99, 10)
-hp = st.number_input("HP", min_value=1, max_value=999, value=100)
-
-if st.button("ステータスを表示"):
-    st.write("=== 勇者のステータス ===")
-    st.write("名前：", namae)
-    st.write("レベル：", level)
-    st.write("HP：", hp)</code></pre>
-
-            <h3>3-3. <code>requirements.txt</code> の内容</h3>
-            <pre><code>streamlit</code></pre>
-
-            <!-- ★ここから生成AI紹介（URL付き）★ -->
-            <h3>3-4. 生成AIを使ってコードや説明文も作れる</h3>
-            <p>
-                Streamlitアプリのコードや説明文は、<strong>生成AI</strong> を使うと作成の手助けになります。  
-                代表的なAIサービスは次の3つです：
-            </p>
-
-            <ul>
-                <li>
-                    <strong>◆ ChatGPT（OpenAI）</strong><br>
-                    コード作成、エラー原因の説明、文章作成が得意です。<br>
-                    公式サイト：  
-                    <a href="https://chat.openai.com" target="_blank">https://chat.openai.com</a>
-                </li>
-
-                <li>
-                    <strong>◆ Gemini（Google）</strong><br>
-                    説明や要約が得意で、調べ学習にも向いています。<br>
-                    公式サイト：  
-                    <a href="https://gemini.google.com" target="_blank">https://gemini.google.com</a>
-                </li>
-
-                <li>
-                    <strong>◆ Claude（Anthropic）</strong><br>
-                    長い文章やコードの読み取り・添削が得意です。<br>
-                    公式サイト：  
-                    <a href="https://claude.ai" target="_blank">https://claude.ai</a>
-                </li>
-            </ul>
-
-            <p>
-                生成AIは <strong>アイデア出し・コードのたたき台作り・エラー調査</strong> に便利です。  
-                ただし、間違った内容が混ざることもあるので、必ず実行して確認しましょう。
-            </p>
-            <!-- ★ここまで生成AI紹介（URL付き）★ -->
-
-        </section>
-
-        <!-- 4. GitHubでファイル作成 -->
-        <section class="section">
-            <h2>4. GitHub上でファイルを作成する（Create new file）</h2>
-
-            <h3>4-1. <code>app.py</code> を作成</h3>
-            <ol>
-                <li>作成したリポジトリのページを開く</li>
-                <li>右上の <strong>Add file</strong> → <strong>Create new file</strong> を選択する</li>
-                <li>File name に <code>app.py</code> と入力する</li>
-                <li>下のテキストエリアにコードを貼り付ける</li>
-                <li>下部の <strong>Commit new file</strong> を押して保存する</li>
-            </ol>
-
-            <h3>4-2. <code>requirements.txt</code> を作成</h3>
-            <ol>
-                <li><strong>Add file</strong> → <strong>Create new file</strong> を選択する</li>
-                <li>File name に <code>requirements.txt</code> と入力する</li>
-                <li>次の1行を入力する：</li>
-            </ol>
-
-            <pre><code>streamlit</code></pre>
-
-            <ol start="4">
-                <li><strong>Commit new file</strong> を押して保存する</li>
-            </ol>
         </section>
 
         <!-- 5. Streamlit Community Cloud -->
@@ -179,10 +116,10 @@ if st.button("ステータスを表示"):
                 <li><strong>New app</strong> をクリックする</li>
                 <li>
                     Repository に  
-                    <code>ユーザー名/リポジトリ名</code>（例：<code>testuser/my-streamlit-app</code>）を選択する
+                    <code>ユーザー名/リポジトリ名</code> を指定する
                 </li>
                 <li>Branch は <code>main</code>、Main file path は <code>app.py</code> を指定する</li>
-                <li><strong>Deploy</strong> を押すと公開URL（<code>https://～.streamlit.app</code>）が発行される</li>
+                <li><strong>Deploy</strong> を押すと公開URLが発行される</li>
             </ol>
         </section>
 
